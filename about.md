@@ -4,12 +4,9 @@ title: About
 permalink: /about/
 ---
 
-This is the base Jekyll theme. You can find out more info about customizing your Jekyll theme, as well as basic Jekyll usage documentation at [jekyllrb.com](http://jekyllrb.com/)
+I have been playing around with programming since I put my hands on my first computer in primary school. I started off writing small games and worked my way up to system programming in C/C++ during high school.
+I went on to study Computer Science in college, then a Master in Intelligent Systems where I worked on biologically-inspired constructive neural networks for Computer Vision.
 
-You can find the source code for the Jekyll new theme at:
-{% include icon-github.html username="jekyll" %} /
-[minima](https://github.com/jekyll/minima)
+I founded my own startup right after, built a MVP and managed to raise pre-seed funding. The product didn't work out in the end, but the entrepreneurship skills I developed allowed me to become part of [Rokk3r Labs](http://rokk3rlabs.com), where I helped co-building other startups as a full-stack developer.
 
-You can find the source code for Jekyll at
-{% include icon-github.html username="jekyll" %} /
-[jekyll](https://github.com/jekyll/jekyll)
+I quit my job to join the [Recurse Center](http://recurse.com) and pursue my interests in system programming in Rust, functional programming in Common Lisp, language design/compilers and reverse engineering.
