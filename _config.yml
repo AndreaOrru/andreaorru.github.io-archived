@@ -23,6 +23,8 @@ twitter_username: AndrewOrru
 github_username:  AndreaOrru
 
 # Build settings
+future: false
+show_drafts: false
 markdown: kramdown
 theme: minima
 gems:
