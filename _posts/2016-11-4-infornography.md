@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Infornography"
-date:   2016-11-04 18:55:00 -0400
+date:   2016-11-04 23:45:00 -0400
 categories: blog
 ---
 ![Serial Experiments Lain]({{ site.url }}/assets/lain.jpg)
