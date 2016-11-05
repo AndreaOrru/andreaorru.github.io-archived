@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Infornography"
-date:   2016-11-05 01:00 -0500
+date:   2016-11-05 01:00 -0400
 ---
 ![Serial Experiments Lain]({{ site.url }}/assets/lain.jpg)
 

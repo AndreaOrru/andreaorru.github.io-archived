@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Porting Super Nintendo games to Nintendo DS through static recompilation"
-date:   2016-12-31 12:00 -0500
+date:   2016-12-31 12:00 -0400
 ---
 If you're a ~~nerd~~ passionate retrogamer, you have probably played some good old SNES games.
 If you're anywhere near my level of ~~nerdiness~~ passion, you may have even played some
