@@ -4,7 +4,7 @@ title: About
 permalink: /about/
 ---
 
-My name is Andrea, but you can call me **Andrew**. I'm a computer programmer. In my [parallel life](http://wildjourney.net), I'm an insatiable traveller.
+My name is Andrea, but you can call me **Andrew**. I'm a computer programmer. In a [parallel life](http://wildjourney.net), I'm an insatiable traveller.
 
 I have been playing around with programming since I put my hands on my first computer in primary school. I started off writing small games and worked my way up to system programming in C/C++ during high school.
 I went on to study **Computer Science** in college, then a Master in Intelligent Systems where I worked on biologically-inspired constructive neural networks for computer vision.

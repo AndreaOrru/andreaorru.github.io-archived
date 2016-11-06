@@ -3,6 +3,7 @@ layout: post
 title:  "Infornography"
 date:   2016-11-05 01:00 -0400
 ---
+
 ![Serial Experiments Lain]({{ site.url }}/assets/lain.jpg)
 
 *Creation happens when the pain of not doing outweights the pain of doing.*
