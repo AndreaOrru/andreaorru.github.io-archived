@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "How to port SNES games to Nintendo DS with static recompilation"
-date:   2016-12-31 12:00 -0400
+date:   2016-12-31 12:00 -0500
 ---
 
 # Introduction
