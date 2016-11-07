@@ -17,16 +17,17 @@ Chrono Trigger received a (slightly) enhanced remake that runs on the Nintendo D
 ![]({{ site.url }}/assets/ctds.jpg)
 {: style="text-align: center"}
 
-So how did Squaresoft do this? They obviously didn't pay a full team of programmers to rewrite it from scratch.
-And they couldn't just recompile the original code, as those games were largely **written in 65816 assembly**.
-So what's going on here?
+How exactly did Squaresoft do this? It seems unlikely that they paid a full team of programmers to rewrite
+an old game from scratch. At the same time, they couldn't just recompile the original code, as those games
+were largely **written in 65816 assembly, specifically for SNES**.
+Something more clever is at play here. Let's unravel the mistery.
 
 # What's going on here?
 
-Here you can see an excerpt of the disassembly of the port of Final Fantasy IV **for PlayStation**.
+Here you can see an excerpt of the disassembly of the port of **Final Fantasy IV for PlayStation**.
+I've assigned names to subroutines for better understandng.
 In MIPS assembly, the instruction `jal` is roughly equivalent to a function call: it saves the return
 address in the `$ra` register and jumps to the target instruction.
-For better understanding, I've assigned names to subroutines so that it's easier to see what's going on.
 
 ![]({{ site.url }}/assets/ff4.png)
 {: style="text-align: center"}
@@ -58,11 +59,9 @@ Some of them may be code, others graphics, music, event script, etc.
 In general, accurate disassembly is not a solved problem. In particular, 65816 assembly supports
 both 8 and 16 bits mode for accumulator and index registers, so the **size of the instructions** can
 vary depending on the mode the processor is in. Disassembling the same portion of code can yield different
-results and only one of them is usually correct. Furthermore, indirect **jumps and jump tables** are
+results and only one of them is usually correct. Furthermore, **indirect jumps and jump tables** are
 not completely reversable at static time. Heuristics can yield both false positives and false negatives.
-The whole process is thus very error prone. But can we get close enough? **If we can get a disassembler that
-is 90-95% accurate** and provides enough auxiliary tools to reverse the uncertain parts, it would
-still be extremely valuable for the task.
+The whole process is thus very error prone.
 
 The current state of the art for disassemblers is [IDA Pro](https://www.hex-rays.com).
 Unfortunately, its support for 65816 and SNES ROMs is quite limited and inadequate for
@@ -76,11 +75,18 @@ hardware registers on the SNES (i.e. for joysticks) have to be **mapped to equiv
 on the DS**... You get the idea.
 
 The result of this process still has to be hackable in order to be able to fix bugs and
-optimize performance critical spots. And after all of this is done, you still have to
+optimize performance-critical spots. And after all of this is done, you still have to
 **generate decently optimized ARM code** for the DS.
-The programming equivalent of a walk in the park, don't you agree?
+Not exactly the programming equivalent of a walk in the park.
 
 # Devising a strategy
+
+Let me make something clear first: we'll never reach 100% accuracy the same way an emulator can.
+But can we get close enough? **If we can get a disassembly that is mostly accurate** and a set
+of **auxiliary tools** that help in reverse-engineering the thoughest parts, we can at least make
+the task manageable.
+
+The first tool we have at our disposal is a **SNES emulator**.
 
 - Start from the log of an emulator to get accurate disassembly and runtime information
 about data and code references
