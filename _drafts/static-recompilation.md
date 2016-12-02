@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "How to port SNES games to Nintendo DS with static recompilation"
+title:  "Static Recompilation: Automated porting of SNES games to Nintendo DS"
 date:   2016-12-31 12:00 -0500
 ---
 
@@ -11,7 +11,7 @@ If you're anywhere near my level of ~~nerdiness~~ passion, you may have even pla
 of the old-school Squaresoft titles like *Final Fantasy* or *Chrono Trigger*.
 
 Later on, some these games have been **ported to more recent platforms** to give today's kids
-a chance to play these masterpieces (and to compensate SquareEnix's lack of ideas for new games).
+a chance to play these masterpieces (and to compensate for SquareEnix's lack of ideas for new games).
 Chrono Trigger received a (slightly) enhanced remake that runs on the Nintendo DS:
 
 ![]({{ site.url }}/assets/ctds.jpg)
@@ -21,6 +21,7 @@ How exactly did Squaresoft do this? It seems unlikely that they paid a full team
 an old game from scratch. At the same time, they couldn't just recompile the original code, as those games
 were largely **written in 65816 assembly, specifically for SNES**.
 Something more clever is at play here. Let's unravel the mistery.
+
 
 # What's going on here?
 
@@ -48,6 +49,7 @@ parts by hand, it looks like it's possible to achieve a fully functional port.
 So the next question I asked myself was: can I do this myself? **Can I port some of this old games
 on a recent platform like the Nintendo DS**, and potentially enhance them in the process?
 
+
 # Why is this a tough problem?
 
 Compared to TOSE, I start from a much more difficult position. Realistically, their team had access
@@ -63,11 +65,6 @@ results and only one of them is usually correct. Furthermore, **indirect jumps a
 not completely reversable at static time. Heuristics can yield both false positives and false negatives.
 The whole process is thus very error prone.
 
-The current state of the art for disassemblers is [IDA Pro](https://www.hex-rays.com).
-Unfortunately, its support for 65816 and SNES ROMs is quite limited and inadequate for
-our purposes. Furthermore, it's a *very* expensive piece of software.
-Looks like we are on our own here.
-
 And of course, disassembling is just the beginning. We have to discover where the various pieces
 of graphics are, when and how they are sent to the screen, what's their format and how to convert
 it to so it's compatible with the Nintendo DS. There are countless of other small details:
@@ -79,6 +76,7 @@ optimize performance-critical spots. And after all of this is done, you still ha
 **generate decently optimized ARM code** for the DS.
 Not exactly the programming equivalent of a walk in the park.
 
+
 # Devising a strategy
 
 Let me make something clear first: we'll never reach 100% accuracy the same way an emulator can.
@@ -86,12 +84,20 @@ But can we get close enough? **If we can get a disassembly that is mostly accura
 of **auxiliary tools** that help in reverse-engineering the thoughest parts, we can at least make
 the task manageable.
 
-The first tool we have at our disposal is a **SNES emulator**.
+The first tool we have at our disposal is a **SNES emulator**. By playing the game ourselves, we can log important informations that would otherwise be very difficult or impossible to derive a static time, like logging execution flow and memory references.
 
-- Start from the log of an emulator to get accurate disassembly and runtime information
-about data and code references
-- Use "static execution" and heuristics to discover potential new pieces of code
-- Once it's done, generate the disassembly, test that the games works/has the same hash
-- Decompile to C and dump comments with information
-- Patch raw spots
-- PROFIT
+Runtime information will not be enough. The chances of exploring all possible paths in the game are very slim. This is where **static analysis** and **abstract interpretation** come to play. In essence, we are going to try and discover all the paths that were not explored during gameplay.
+
+At this point we should have a decent picture of which areas of the ROM are code, and which ones are data. We can generate a human-readable, **annotated version of the assembly code** that should be **assemblable back to the original ROM**.
+
+In order to port the game to the DS, we are gonna somehow have to **transform the 65816 assembly** to ARM, and adjust all the accesses to hardware-specific stuff (like the Picture Processing Unit). We can instead **translate it to C** and let the compiler do the work for us. Bonus, we get to hack the code of the game by writing plain C.
+
+
+# A simple case study: Super Pong
+
+As a proof of concept, we are gonna try to port the simplest possible game out there: **Pong**. There is a public domain implementation of it for SNES that's available online:
+
+![]({{ site.url }}/assets/pong.png)
+{: style="text-align: center"}
+
+Nothing too fancy, but it'll serve our purposes.
