@@ -2,7 +2,7 @@
 #
 # This config file is meant for settings that affect your whole blog, values
 # which you are expected to set up once and rarely edit after that. If you find
-# yourself editing these this file very often, consider using Jekyll's data files
+# yourself editing this file very often, consider using Jekyll's data files
 # feature for the data you need to update frequently.
 #
 # For technical reasons, this file is *NOT* reloaded automatically when you use
@@ -18,7 +18,7 @@ email: andreaorru1991@gmail.com
 description: > # this means to ignore newlines until "baseurl:"
   Wanderluster and computer programmer. Planning to take over the world in my spare time.
 baseurl: "" # the subpath of your site, e.g. /blog
-url: "http://andreaorru.com" # the base hostname & protocol for your site, e.g. http://example.com
+url: "https://andreaorru.com" # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: AndrewOrru
 github_username:  AndreaOrru
 
